@@ -21,7 +21,7 @@ export class StorageService {
         const file = bucket.file(filename);
         await file.makePublic();
       } catch (error) {
-        console.error(error)
+        console.error(error);
       }
     }
 
@@ -37,13 +37,12 @@ export class StorageService {
 
   update(id: string, filename: string) {
     const file = bucket.file(id);
-    file.rename(filename, (error, renamedFile) => {
+    file.rename(filename, (error) => {
       if (error) {
         console.error(new Error('Error: did not rename file'));
       }
       const newFile = bucket.file(filename);
-      newFile.makePublic()
-
+      newFile.makePublic();
     });
     return `Renamed File`;
   }
