@@ -14,11 +14,15 @@ export class StorageService {
     const filepath = __dirname.slice(0, -12) + relativePath;
 
     async function uploadFile() {
-      await bucket.upload(filepath, {
-        destination: filename,
-      });
-      const file = bucket.file(filename);
-      file.makePublic();
+      try {
+        await bucket.upload(filepath, {
+          destination: filename,
+        });
+        const file = bucket.file(filename);
+        await file.makePublic();
+      } catch (error) {
+        console.error(error)
+      }
     }
 
     await uploadFile().catch(console.error);
@@ -33,11 +37,13 @@ export class StorageService {
 
   update(id: string, filename: string) {
     const file = bucket.file(id);
-    file.rename(filename, (error, renamedFile, apiResponse) => {
+    file.rename(filename, (error, renamedFile) => {
       if (error) {
         console.error(new Error('Error: did not rename file'));
       }
-      console.log({ renamedFile, apiResponse });
+      const newFile = bucket.file(filename);
+      newFile.makePublic()
+
     });
     return `Renamed File`;
   }
