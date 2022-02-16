@@ -13,7 +13,7 @@
     "dev": "nest start --watch",
     "debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
-    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\"",
     "test": "jest",
     "api-spec:generate": "npx ts-node -T ./src/generate-open-api-spec.ts",
     "test:watch": "jest --watch",
