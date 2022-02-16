@@ -8,7 +8,19 @@ const bucketName = 'fresh-traks-bucket1';
 const bucket = storage.bucket(bucketName);
 @Injectable()
 export class StorageService {
-  async create(file: Express.Multer.File) {
+  async download(filename: string) {
+    const file = bucket.file(filename);
+    try {
+      const data = await file.download();
+      const track = data[0];
+      return track
+    } catch (error) {
+      console.log(error);
+
+    }
+  }
+
+  async upload(file: Express.Multer.File) {
     const relativePath = file.path;
     const filename = relativePath.split('uploads/')[1] + '.mp3';
     const filepath = __dirname.slice(0, -12) + relativePath;
