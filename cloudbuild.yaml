@@ -1,3 +1,10 @@
 steps:
+- name: 'ubuntu'
+  args: ['echo', 'this is a bash ubuntu terminal']
 - name: 'gcr.io/cloud-builders/docker'
   args: [ 'build', '-t', 'gcr.io/fresh-traks/ft-storage-api', '.' ]
+- name: 'gcr.io/cloud-builders/docker'
+  args: [ 'push', 'gcr.io/fresh-traks/ft-storage-api', '.' ]
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args: ['run', 'deploy', 'ft-storage-api', '--image', 'gcr.io/fresh-traks/ft-storage-api', '--region', 'us-east1']
