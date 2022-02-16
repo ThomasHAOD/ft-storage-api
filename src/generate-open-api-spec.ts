@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
-import * as fs from 'fs'
+import * as fs from 'fs';
 
 async function generateOpenApiSpec() {
   const app = await NestFactory.create(AppModule);
@@ -14,6 +14,5 @@ async function generateOpenApiSpec() {
   const document = JSON.stringify(SwaggerModule.createDocument(app, config));
 
   fs.writeFileSync('openApi2Spec.json', document);
-
 }
 generateOpenApiSpec();

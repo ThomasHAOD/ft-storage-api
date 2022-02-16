@@ -13,10 +13,9 @@ export class StorageService {
     try {
       const data = await file.download();
       const track = data[0];
-      return track
+      return track;
     } catch (error) {
       console.log(error);
-
     }
   }
 

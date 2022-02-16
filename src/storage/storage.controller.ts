@@ -16,12 +16,11 @@ import { UpdateObj } from './entities/storage.entity';
 
 @Controller('storage')
 export class StorageController {
-  constructor(private readonly storageService: StorageService) { }
+  constructor(private readonly storageService: StorageService) {}
 
   @Get('download')
   @Header('Content-Type', 'audio/mp3')
-  @Header('Content-Disposition', `attachment;`
-  )
+  @Header('Content-Disposition', `attachment;`)
   async downloadFile(@Query('filename') filename: string) {
     return await this.storageService.download(filename);
   }
