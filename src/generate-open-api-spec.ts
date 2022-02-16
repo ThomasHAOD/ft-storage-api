@@ -13,6 +13,6 @@ async function generateOpenApiSpec() {
     .build();
   const document = JSON.stringify(SwaggerModule.createDocument(app, config));
 
-  fs.writeFileSync('openApi2Spec.json', document);
+  fs.writeFileSync('openApi3Spec.json', document);
 }
 generateOpenApiSpec();
