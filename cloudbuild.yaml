@@ -1,6 +1,4 @@
 steps:
-- name: 'ubuntu'
-  args: ['ls -a']
 - name: 'gcr.io/cloud-builders/docker'
   args: [ 'build', '-t', 'gcr.io/fresh-traks/ft-storage-api', '.' ]
 - name: 'gcr.io/cloud-builders/docker'
