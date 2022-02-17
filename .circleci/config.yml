@@ -1,6 +1,6 @@
 version: 2.1
 jobs:
-  I-Have-Code:
+  build-and-generate-api-spec:
     docker:
       - image: thomashodonnell/ts-node-ci
     steps:
@@ -10,6 +10,7 @@ jobs:
           command: |
             yarn
             yarn api-spec:generate
+            echo 'x-google-backend:\n  address: $TRACKS_API_URL' >> openApi2Spec.yaml
             cat openApi2Spec.yaml
   Run-With-Node:
     docker:
