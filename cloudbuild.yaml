@@ -5,4 +5,4 @@ steps:
   args: [ 'push', 'gcr.io/fresh-traks/ft-storage-api']
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: gcloud
-  args: ['run', 'deploy', 'ft-storage-api', '--image', 'gcr.io/fresh-traks/ft-storage-api', '--region', 'us-east1']
+  args: ['run', 'deploy', 'ft-storage-api', '--image', 'gcr.io/fresh-traks/ft-storage-api', '--region', 'us-central1']
