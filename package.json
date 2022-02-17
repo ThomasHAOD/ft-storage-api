@@ -16,6 +16,7 @@
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
     "api-spec:generate": "npx ts-node -T ./src/generate-open-api-spec.ts",
+    "api-spec:convert": "api-spec-converter --from=openapi_3 --to=swagger_2 --syntax=yaml openApi3Spec.json > openApi2Spec.yaml ",
     "api-spec:deploy": "echo 'x-google-backend:\n  address: https://ft-tracks-api-zlauhlisia-uc.a.run.app' >> openApi2Spec.yaml && gcloud api-gateway api-configs create storage-api-config-`date '+%m-%d-%Y'` --api=ft-proxy-api --openapi-spec=openApi2Spec.yaml --project=fresh-traks --backend-auth-service-account=api-gateway-sa@fresh-traks.iam.gserviceaccount.com && gcloud api-gateway gateways update ft-api-gateway-storage --api=ft-proxy-api --api-config=storage-api-config-`date '+%m-%d-%Y'` --location=us-east1 --project=fresh-traks ",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
@@ -29,13 +30,12 @@
     "@nestjs/core": "^8.0.0",
     "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^8.0.0",
-    "@nestjs/swagger": "^3.0.0",
+    "@nestjs/swagger": "^5.2.0",
     "api-spec-converter": "^2.12.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0",
-    "swagger-ui-express": "^4.3.0",
-    "yaml": "^2.0.0-10"
+    "swagger-ui-express": "^4.3.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^8.0.0",

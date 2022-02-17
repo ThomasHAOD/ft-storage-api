@@ -12,10 +12,8 @@ async function generateOpenApiSpec() {
     .setDescription('An API for interacting with Google Cloud Storage')
     .setVersion('1.0')
     .build();
-  const json = SwaggerModule.createDocument(app, config);
-  const doc = new YAML.Document();
-  doc.contents = json;
+  const json = JSON.stringify(SwaggerModule.createDocument(app, config));
 
-  fs.writeFileSync('openApi2Spec.yaml', doc.toString());
+  fs.writeFileSync('openApi3Spec.json', json);
 }
 generateOpenApiSpec();

@@ -10,6 +10,7 @@ jobs:
           command: |
             yarn
             yarn api-spec:generate 
+            yarn api-spec:convert 
             echo 'x-google-backend:' >> openApi2Spec.yaml
             echo '  address: https://ft-storage-api-zlauhlisia-uc.a.run.app' >> openApi2Spec.yaml
             cat openApi2Spec.yaml
