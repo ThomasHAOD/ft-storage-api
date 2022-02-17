@@ -8,6 +8,7 @@ jobs:
       - run:
           name: Code Has Arrived
           command: |
+            yarn
             yarn api-spec:generate
             cat openApi2Spec.yaml
   Run-With-Node:
