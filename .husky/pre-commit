@@ -1,4 +1,4 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-yarn api-spec:generate && yarn api-spec:convert && yarn lint && CI=true yarn test && yarn test:e2e
+yarn api-spec:generate && yarn api-spec:convert && yarn lint && CI=true yarn test && yarn test:e2e && git add .
