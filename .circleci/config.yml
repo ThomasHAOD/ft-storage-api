@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   I-Have-Code:
     docker:
-      - image: circleci/node
+      - image: thomashodonnell/ts-node-ci
     steps:
       - checkout
       - run:
