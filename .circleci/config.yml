@@ -9,8 +9,9 @@ jobs:
           name: Code Has Arrived
           command: |
             yarn
-            yarn api-spec:generate
-            echo 'x-google-backend:\n  address: $TRACKS_API_URL' >> openApi2Spec.yaml
+            yarn api-spec:generate 
+            echo 'x-google-backend:' >> openApi2Spec.yaml
+            echo '  address: $TRACKS_API_URL' >> openApi2Spec.yaml
             cat openApi2Spec.yaml
             echo $GCLOUD_SERVICE_KEY | gcloud auth activate-service-account --key-file=-
             gcloud config set project ${GOOGLE_PROJECT_ID}
