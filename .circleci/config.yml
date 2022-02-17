@@ -30,13 +30,8 @@ jobs:
 workflows:
  Example_Workflow:
    jobs:
-     - Hello-World
-     - I-Have-Code:
-         requires:
-           - Hello-World
-     - Run-With-Node:
-         requires:
-           - Hello-World
+     - I-Have-Code
+     - Run-With-Node
      - Hold-For-Approval:
          type: approval
          requires:
