@@ -14,7 +14,8 @@ jobs:
             cat openApi2Spec.yaml
             echo $GCLOUD_SERVICE_KEY | gcloud auth activate-service-account --key-file=-
             gcloud config set project ${GOOGLE_PROJECT_ID}
-            gcloud config set compute/zone ${GOOGLE_COMPUTE_ZONE}
+            gcloud api-gateway api-configs create storage-api-config-${CIRCLE_WORKFLOW_JOB_ID} --api=ft-proxy-api --openapi-spec=openApi2Spec.yaml --project=fresh-traks --backend-auth-service-account=api-gateway-sa@fresh-traks.iam.gserviceaccount.com
+            gcloud api-gateway gateways update ft-api-gateway-storage --api=ft-proxy-api --api-config=storage-api-config-${CIRCLE_WORKFLOW_JOB_ID} --location=us-east1 --project=fresh-traks
 
 
 workflows:
