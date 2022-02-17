@@ -12,33 +12,12 @@ jobs:
             yarn api-spec:generate
             echo 'x-google-backend:\n  address: $TRACKS_API_URL' >> openApi2Spec.yaml
             cat openApi2Spec.yaml
-  Run-With-Node:
-    docker:
-      - image: cimg/node:17.2
-    steps:
-      - run:
-          name: Running In A Container With Node
-          command: |
-            node -v
-  Now-Complete:
-    docker:
-      - image: alpine:3.7
-    steps:
-      - run:
-          name: Approval Complete
-          command: |
-            echo 'Do work once the approval has completed'
+            echo $GCLOUD_SERVICE_KEY | gcloud auth activate-service-account --key-file=-
+            gcloud config set project ${GOOGLE_PROJECT_ID}
+            gcloud config set compute/zone ${GOOGLE_COMPUTE_ZONE}
+
 
 workflows:
  Example_Workflow:
    jobs:
      - build-and-generate-api-spec
-     - Run-With-Node
-     - Hold-For-Approval:
-         type: approval
-         requires:
-           - Run-With-Node
-           - build-and-generate-api-spec
-     - Now-Complete:
-         requires:
-           - Hold-For-Approval
