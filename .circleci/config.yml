@@ -32,13 +32,13 @@ jobs:
 workflows:
  Example_Workflow:
    jobs:
-     - I-Have-Code
+     - build-and-generate-api-spec
      - Run-With-Node
      - Hold-For-Approval:
          type: approval
          requires:
            - Run-With-Node
-           - I-Have-Code
+           - build-and-generate-api-spec
      - Now-Complete:
          requires:
            - Hold-For-Approval
